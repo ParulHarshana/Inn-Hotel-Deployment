@@ -11,6 +11,12 @@ with open('transformer.pkl','rb' ) as file:
 
 def prediction(input_list):
     
+    trans_data=pt.transform([[input_list[0],input_list[3]]])
+    input_list[0] = tran_data[0][0]
+    input_list[3] = tran_data[0][1]
+
+    input_list = np.array(input_list,dtype=object)
+
     
     pred=model.predict_proba([input_list])[:,1][0]
     
@@ -31,14 +37,14 @@ def main():
     park=(lambda x: 1 if x=='Yes' else 0)(st.selectbox('Is parking included in the booking',['Yes','No']))
     month=st.slider('What will be the month of arrival',min_value=1,max_value=12,step=1)
     day=st.slider('What will be the day of arrival',min_value=1,max_value=31,step=1)
-    weekday=(lambda x: 0 if x=='Mon' else 1 if x=='Tue' else 2 if x=='Wed' else 3 if x=='Thur' else 4 if x=='Fri' else 5 if x=='Sat' else 6)
-    (st.selectbox('What is the week day of arrival',['Mon','Tue','Wed','Thur','Fri','sat','sun']))
+    wkday_lambda = (lambda x: 0 if x=='Mon' else 1 if x=='Tue' else 2 if x=='Wed' else 3 if x=='Thus' 
+                    else 4 if x=='Fri' else 5 if x=='Sat' else 6)
+    wkday = wkday_lambda(st.selectbox('What is the weekday of arrival',['Mon','Tue','Wed','Thus','Fri','Sat','Sun']))
 
-    trans_data=pt.transform([[float(lt),float(price)]])
-    lt_t=trans_data[0][0]
-    price_t=trans_data[0][1]
 
-    input_list=[lt_t,mst,spcl,price_t,adults,weekend,park,weeknights,month,day,weekday]
+   
+
+    input_list=[lt,mst,spcl,price,adults,weekend,park,weeknights,month,day,wkday]
 
     if st.button('Predict'):
         response=prediction(input_list)
