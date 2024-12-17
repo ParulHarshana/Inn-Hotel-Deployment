@@ -41,7 +41,7 @@ def main():
     input_list=[lt_t,mst,spcl,price_t,adults,weekend,park,weeknights,month,day,weekday]
 
     if st.button('Predict'):
-        response=predict(input_list)
+        response=prediction(input_list)
         st.success(response)
 
 if __name__=='__main__':
