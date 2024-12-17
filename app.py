@@ -21,7 +21,7 @@ def prediction(input_list):
 
 def main():
     st.title('INN HOTEL GROUP')
-    lt=st.test_input('Enter the lead time.')
+    lt=st.text_input('Enter the lead time.')
     mst=(lambda x: 1 if x=='Online'else 0)(st.st.selectbox('Enter the type of booking',['Online','Offline']))
     spcl=st.selectbox('Select the no of special request made',[1,2,3,4,5])
     price=st.text_input('Enter the price offered for the room')
