@@ -11,7 +11,7 @@ with open('transformer.pkl','rb' ) as file:
 
 def prediction(input_list):
     
-    trans_data=pt.transform([[input_list[0],input_list[3]]])
+    tran_data=pt.transform([[input_list[0],input_list[3]]])
     input_list[0] = tran_data[0][0]
     input_list[3] = tran_data[0][1]
 
