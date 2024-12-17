@@ -10,7 +10,7 @@ with open('transformer.pkl','rb' ) as file:
     pt=pickle.load(file)
 
 def prediction(input_list):
-    input_list=np.array(input_list,dtype=object)
+    
     
     pred=model.predict_proba([input_list])[:,1][0]
     
@@ -34,7 +34,7 @@ def main():
     weekday=(lambda x: 0 if x=='Mon' else 1 if x=='Tue' else 2 if x=='Wed' else 3 if x=='Thur' else 4 if x=='Fri' else 5 if x=='Sat' else 6)
     (st.selectbox('What is the week day of arrival',['Mon','Tue','Wed','Thur','Fri','sat','sun']))
 
-    trans_data=pt.transform([[lt,price]])
+    trans_data=pt.transform([[float(lt),float(price)]])
     lt_t=trans_data[0][0]
     price_t=trans_data[0][1]
 
